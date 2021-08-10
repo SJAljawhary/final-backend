@@ -1,10 +1,13 @@
 'use strict';
 
+const userModel = require('./user');
+
+
 function putRequesthandler(req,res){
 
     let index = Number(req.params.index);
 
-    const {email ,imageUrl , title  } = req.body;
+    const {email ,title ,   imageUrl} = req.body;
 
    
     userModel.find({email:email} , function(error,userData){
@@ -12,13 +15,13 @@ function putRequesthandler(req,res){
         if(error){
             res.send(error)
         }else{
-            userData[0].splice(index,1,{
-                imageUrl : imageUrl,
-                title : title
+            userData[0].colors.splice(index,1,{
+                title : title,
+                imageUrl : imageUrl
             })
-            userData.save();
+            userData[0].save();
 
-            res.status(200).send(userData[0])
+            res.status(200).send(userData[0].colors)
               
 }
     })}

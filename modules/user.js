@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const colorSchema = new mongoose.Schema({
   title : String,
-  img : String
+  imageUrl : String
 });
 
 const userSchema = new mongoose.Schema({

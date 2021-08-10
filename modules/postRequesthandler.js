@@ -4,18 +4,18 @@ const userModel = require('./user');
 
 function postRequesthandler(req,res){
 
-    const {email , imageUrl , title } = req.body;
+    const {email , title , imageUrl } = req.body;
 
     userModel.find({email:email} , function(error,userData){
 
         if(error){
             res.send(error)
         }else{
-            userData.push({
+            userData[0].colors.push({
                 title : title ,
                 imageUrl : imageUrl
             })
-            userData.save();
+            userData[0].save();
 
             res.status(200).send(userData[0])
         }
